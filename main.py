@@ -1,15 +1,18 @@
 import os
 from telethon import TelegramClient
 
-API_ID = int(os.environ.get("API_ID", 0))
-API_HASH = os.environ.get("API_HASH", "")
+api_id = int(os.environ.get("API_ID"))
+api_hash = os.environ.get("API_HASH")
+phone = os.environ.get("TG_PHONE")
 
-client = TelegramClient("session_name", API_ID, API_HASH)
+# تمرير الجوال للـ client يمنعه من طلب input()
+client = TelegramClient("session_name", api_id, api_hash)
+
 
 async def main():
-    print("Bot is running!")
+  await client.start(phone=phone)
+  print("Bot is running successfully!")
 
-if __name__ == "__main__":
-    with client:
-        client.loop.run_until_complete(main())
 
+with client:
+  client.loop.run_until_complete(main())
