@@ -12,6 +12,12 @@ app = Client(
     api_hash=API_HASH
 )
 
+# أمر /start
+@app.on_message(filters.command("start"))
+async def start_cmd(client, message):
+    await message.reply("أهلاً بك! البوت يعمل الآن بنجاح على رندر 🚀")
+
+# أمر .تستر
 @app.on_message(filters.command("تستر", prefixes="."))
 async def tastar_cmd(client, message):
     await message.reply("⚡ **تم تفعيل نظام التستر بنجاح!**\n\nالقائمة جاهزة والتحكم كامل معك يا غالي.")
